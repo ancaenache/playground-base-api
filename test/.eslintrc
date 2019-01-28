@@ -1,0 +1,3 @@
+{
+  "extends": "@prodigy/eslint-config-prodigy/tests"
+}

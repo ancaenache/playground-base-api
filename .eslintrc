@@ -1,0 +1,6 @@
+{
+  "extends": "@prodigy/eslint-config-prodigy",
+  "env": {
+    "jasmine": true
+  }
+}

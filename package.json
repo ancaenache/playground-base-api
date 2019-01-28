@@ -1,0 +1,62 @@
+{
+  "name": "playground-base-api",
+  "description": "testing base api for creating new services",
+  "author": "Anca Enache <anca.enache@prodigygame.com>",
+  "version": "1.0.0",
+  "scripts": {
+    "config-dev": "AWS_PROFILE=dev CONFIG_VERBOSE=true config echo",
+    "config-staging": "AWS_PROFILE=staging CONFIG_VERBOSE=true config echo",
+    "config-test": "ENV=test CONFIG_VERBOSE=true config echo",
+    "config-local": "ENV=local CONFIG_VERBOSE=true config echo",
+    "config-ps": "CONFIG_VERBOSE=true config echo",
+    "start": "node ./src/server.js",
+    "dev": "AWS_PROFILE=dev config node src/server.js",
+    "dev-debug": "AWS_PROFILE=dev PORT=4000 config node --inspect-brk=12769 src/server.js",
+    "staging": "AWS_PROFILE=staging config node src/server.js",
+    "staging-debug": "AWS_PROFILE=staging config node --inspect-brk=12769 src/server.js",
+    "production": "AWS_PROFILE=production config node src/server.js",
+    "test": "AWS_PROFILE=dev config istanbul cover _mocha -- --recursive -R spec test/ --ui bdd",
+    "test-watch": "AWS_PROFILE=dev config istanbul cover _mocha -- --recursive -R spec test/ --ui bdd --watch",
+    "lint": "./node_modules/eslint/bin/eslint.js src test",
+    "fixlint": "./node_modules/.bin/eslint --fix src test"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "@prodigy/api": "~8.0.13",
+    "@prodigy/cache": "~3.0.1",
+    "@prodigy/config": "~2.0.1",
+    "@prodigy/formatter": "~3.0.5",
+    "@prodigy/logger": "~4.0.1",
+    "@prodigy/mailer": "~2.0.0",
+    "@prodigy/pgsql": "~1.0.0",
+    "@prodigy/request": "~5.0.4",
+    "@prodigy/validate": "~1.1.0"
+  },
+  "devDependencies": {
+    "@prodigy/eslint-config-prodigy": "0.0.5",
+    "eslint": "^3.13.1",
+    "eslint-config-airbnb-base": "^9.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "nock": "^8.0.0",
+    "pre-commit": "^1.2.2",
+    "nodemon": "^1.9.2",
+    "restify": "^4.1.1",
+    "chai": "^3.5.0",
+    "dirty-chai": "^1.2.2",
+    "chai-datetime": "^1.4.1",
+    "istanbul": "^0.4.2",
+    "mocha": "^2.2.5",
+    "sinon": "^4.4.8",
+    "sinon-chai": "^2.8.0",
+    "sinon-test": "^2.1.3"
+  },
+  "eslintConfig": {
+    "extends": "@prodigy/eslint-config-prodigy"
+  },
+  "pre-commit": [
+    "lint",
+    "test"
+  ]
+}

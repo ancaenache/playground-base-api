@@ -1,0 +1,17 @@
+branch-defaults:
+  master:
+    environment: leaderboard-api-prod
+    group_suffix: null
+  dev:
+    environment: leaderboard-api-dev
+    group_suffix: null
+  staging:
+    environment: leaderboard-api-stg-v2
+    group_suffix: null
+global:
+  application_name: leaderboard-api
+  default_ec2_keyname: staging
+  default_platform: 64bit Amazon Linux 2015.09 v2.0.6 running Node.js
+  default_region: us-east-1
+  profile: null
+  sc: git
