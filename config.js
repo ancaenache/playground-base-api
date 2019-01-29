@@ -1,28 +1,7 @@
 module.exports = function appConfig(config) {
     return {
         key: config.getString('SERVICE_BASE_API_KEY'),
-        db: {
-            read: {
-                conn_str: {
-                    user: config.getString('DB_GAME_USERNAME'),
-                    password: config.getString('DB_GAME_PASSWORD'),
-                    host: config.getString('DB_GAME_HOST'),
-                    port: config.getInt('DB_GAME_PORT'),
-                    database: config.getString('DB_GAME_SCHEMA'),
-                },
-                pool_size: config.getNullableInt('DB_GAME_POOL_SIZE'),
-            },
-            write: {
-                conn_str: {
-                    user: config.getString('DB_GAME_USERNAME'),
-                    password: config.getString('DB_GAME_PASSWORD'),
-                    host: config.getString('DB_GAME_HOST'),
-                    port: config.getInt('DB_GAME_PORT'),
-                    database: config.getString('DB_GAME_SCHEMA'),
-                },
-                pool_size: config.getNullableInt('DB_GAME_POOL_SIZE'),
-            },
-        },
+        firstParamUI: config.getString('FIRST_PARAM_UI'),
         assetCache: {
             host: config.getString('ASSET_CACHE_HOST'),
             port: config.getInt('ASSET_CACHE_PORT'),
