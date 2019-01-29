@@ -16,3 +16,4 @@ bin/
 .DS_Store
 coverage/
 nodemon.json
+package-lock.json
