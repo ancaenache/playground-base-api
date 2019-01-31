@@ -10,12 +10,11 @@ function Board(id, name, enabledFlag, modifiedDate) {
     this.modifiedDate = modifiedDate;
 }
 
-MockConnector.getBoard = (id, name, container) => {
+MockConnector.getBoard = (id, name, services) => {
     const successIds = [1, 5, 345];
     const rows = [];
-    const logger = container.logger;
-    // const enabledFlag = container.config.getString('FIRST_PARAM_U');
-    // console.log(enabledFlag);
+    const { logger, config } = services;
+    const enabledFlag = config.get('playground-base-api.firstParamUI') || 'default-on';
 
     return new Promise((resolve, reject) => {
         if (!successIds.includes(id)) {
@@ -25,7 +24,7 @@ MockConnector.getBoard = (id, name, container) => {
         }
 
         if (successIds.includes(id)) {
-            rows.push(new Board(id, name || 'Default', 'on', Date.now()));
+            rows.push(new Board(id, name || 'Default', enabledFlag, Date.now()));
         }
 
         resolve(rows);
