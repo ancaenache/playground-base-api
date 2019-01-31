@@ -1,7 +1,7 @@
 module.exports = function appConfig(config) {
     return {
         key: config.getString('SERVICE_BASE_API_KEY'),
-        firstParamUI: config.getString('FIRST_PARAM_UI'),
+        firstParamUI: config.getNullableString('FIRST_PARAM_UI'),
         assetCache: {
             host: config.getString('ASSET_CACHE_HOST'),
             port: config.getInt('ASSET_CACHE_PORT'),
