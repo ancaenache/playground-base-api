@@ -1,4 +1,5 @@
 const Boards = require('../services/boards');
+const { Error: apiError } = require('@prodigy/api');
 
 /**
  * @api {get} /playground-base-api/board/:id Get board data
@@ -32,12 +33,23 @@ exports.getBoard = {
             required: false,
         },
     },
-    // TO DO: is container = services or the entire api obj
-    // check prodigy-api repo
-    run: (container, data, next) => {
-        Boards.getBoard(data, container)
-            .then((result) => {
-                next(200, result);
+    run: (services, data, next) => {
+        Boards.getBoard(data, services)
+            .then((board) => {
+                Boards.incrementViewCounts(data.id, services, (incrErr, newCount) => {
+                    let response = {};
+
+                    if (incrErr) {
+                        next(new apiError.Generic());
+                        return;
+                    }
+
+                    response = {
+                        board,
+                        viewCounts: newCount,
+                    };
+                    next(200, response);
+                });
             })
             .catch((error) => {
                 next(error.statusCode || 500, error);
